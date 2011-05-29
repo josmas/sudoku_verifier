@@ -1,6 +1,14 @@
 package com.jos.sudoku.data;
 
+import java.io.IOException;
+
 public interface SudokuDAO {
 
-	public String readInput(String input);
+	/**
+	 * COMMNET  ME!!!!!!!!!!!!
+	 * @param input
+	 * @return
+	 * @throws IOException
+	 */
+	public String readInput(String input)  throws IOException;
 }
