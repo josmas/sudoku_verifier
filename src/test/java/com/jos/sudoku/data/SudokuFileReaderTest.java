@@ -39,8 +39,6 @@ public class SudokuFileReaderTest {
 		//It also touches the file system so should be separated to an integration suite.
 		String result = reader.readInput("solutionFiles/correct.txt");
 		assertEquals(expected, result);
-		//TODO delete this printout
-		System.out.println(result);
 	}
 
 }
