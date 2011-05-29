@@ -1,4 +1,4 @@
-package com.jos.sudoku;
+package com.jos.sudoku.data;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.jos.sudoku.data.SudokuDAO;
+import com.jos.sudoku.data.SudokuFileReader;
 
 public class SudokuFileReaderTest {
 

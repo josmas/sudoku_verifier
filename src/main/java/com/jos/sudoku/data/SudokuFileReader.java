@@ -1,4 +1,4 @@
-package com.jos.sudoku;
+package com.jos.sudoku.data;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.jos.sudoku.data.SudokuDAO;
 
 public class SudokuFileReader implements SudokuDAO {
 
@@ -22,6 +21,7 @@ public class SudokuFileReader implements SudokuDAO {
 	 * @throws IOException
 	 */
 	private String readFile(String input) throws IOException {
+		//TODO this method does not insure against bad input
 		StringBuilder contents = new StringBuilder();
 
 		FileInputStream fstream = new FileInputStream(input);
