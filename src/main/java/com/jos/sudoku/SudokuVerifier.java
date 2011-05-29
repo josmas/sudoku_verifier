@@ -2,12 +2,14 @@ package com.jos.sudoku;
 
 public class SudokuVerifier {
 
+	
+
 	/**
 	 * <p>Verifies that a particular entry (row, column, or square) of the Sudoku is correct</p>
 	 * @param row  the Sudoku chain to verify
 	 * @return A boolean indicating if the chain is correct or not (a <code>null</code> input returns <code>false</code>)
 	 */
-	public boolean isCorrect(String chain) {
+	public boolean isChainCorrect(String chain) {
 
 		if (isEmptyChain(chain) || !isValidChain(chain))
 			return false;
