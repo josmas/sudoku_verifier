@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +26,8 @@ public class SudokuVerifierTest {
 	@Test
 	public void correctnessOfRows() throws IOException{
 
-		//TODO readInput will not return a chain but the whole Sudoku --- me thinks! 
+		//Mocking readInput altough it will not return a chain but the whole Sudoku.
+		//Handy for testing in isolation here.
 		when(file.readInput("correctRow")).thenReturn("248395716");
 		String correctRow = file.readInput("correctRow");
 		assertTrue(sv.isChainCorrect(correctRow));
@@ -46,5 +48,24 @@ public class SudokuVerifierTest {
 		String nullRow = file.readInput("nullRow");
 		assertFalse(sv.isChainCorrect(nullRow));
 	}
+	
+	@Test
+	public void verifySudoku() throws IOException {
+		String fullSudoku = "248 395 716\n571 628 349\n936 741 582\n" +
+				"682 539 174\n359 174 628\n714 862 953\n" +
+				"863 417 295\n195 286 437\n427 953 861\n";
 
+		Sudoku sudoku = new Sudoku(fullSudoku);
+		assertTrue(sv.verifySudoku(sudoku));
+	}
+	
+	@Test
+	public void verifyInvalidSudoku() throws IOException {
+		String fullSudoku = "248 397 716\n571 628 349\n936 741 582\n" +
+				"682 539 174\n359 174 628\n714 862 953\n" +
+				"863 417 295\n195 286 437\n427 953 861\n";
+
+		Sudoku sudoku = new Sudoku(fullSudoku);
+		assertFalse(sv.verifySudoku(sudoku));
+	}
 }
