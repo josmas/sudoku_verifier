@@ -40,5 +40,15 @@ public class SudokuFileReaderTest {
 		String result = reader.readInput("solutionFiles/correct.txt");
 		assertEquals(expected, result);
 	}
+	
+	@Test
+	public void testReadFromFileWithInvalidData(){
+		try {
+			reader.readInput("invalid_data.txt");
+			fail("File does not exist; Exception expected");
+		} catch (IOException e) {
+			// Ignore
+		}
+	}
 
 }
