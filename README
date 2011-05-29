@@ -1,0 +1,20 @@
+-----------------------
+-- Sudoku Verifier   --
+-----------------------
+
+'mvn install' or 'mvn test' should do the trick (if you have maven 2 installed!).
+
+
+-- Running the specs: 
+Cucumber features and cuke4duke execution is handled in the maven pom. To run features do:
+# Bootstrapping the system (only needed the first time, but it will take a while to download an install): 
+mvn -Dcucumber.installGems=true integration-test
+mvn integration-test   // For all tests to run (also needed to compile everything, at least the first time)
+mvn cuke4duke:cucumber // To run just cucumber features
+
+-- If you are behind a proxy, please modify the pom file accordingly (search for 'behind a proxy' for instructions in the file).
+
+Cucumber features are stored in the features folder.
+Step definitions are stored in the test folder, stepdefinitions package.
+
+Jos - May 2o11
