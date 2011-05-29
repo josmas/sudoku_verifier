@@ -1,84 +1,105 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>SudokuVerifier</artifactId>
-    <groupId>com.josmas.sudoku</groupId>
-    <version>0.1</version>
-    <packaging>jar</packaging>
+	<artifactId>SudokuVerifier</artifactId>
+	<groupId>com.josmas.sudoku</groupId>
+	<version>0.1</version>
+	<packaging>jar</packaging>
 
-    <name>sudoku</name>
-    <url>http://maven.apache.org</url>
+	<name>sudoku</name>
+	<url>http://maven.apache.org</url>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <cuke4duke.version>0.4.3</cuke4duke.version>
-            <!-- Behind a proxy? -->
-            <!-- see http://wiki.github.com/aslakhellesoy/cuke4duke/installing-gems -->
-            <!--  and http://github.com/aslakhellesoy/cuke4duke/issues/issue/36 -->
-            <!-- http.proxy>proxy.port</http.proxy-->
-    </properties>
-    <repositories>
-    <repository>
-              <id>codehaus</id>
-              <url>http://repository.codehaus.org</url>
-        </repository>
-        <repository>
-            <id>cukes</id>
-            <url>http://cukes.info/maven</url>
-        </repository>
-    </repositories>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<cuke4duke.version>0.4.3</cuke4duke.version>
+		<!-- Behind a proxy? -->
+		<!--
+			see http://wiki.github.com/aslakhellesoy/cuke4duke/installing-gems
+		-->
+		<!--  and http://github.com/aslakhellesoy/cuke4duke/issues/issue/36 -->
+		<!-- http.proxy>proxy.port</http.proxy-->
+	</properties>
+	<repositories>
+		<repository>
+			<id>codehaus</id>
+			<url>http://repository.codehaus.org</url>
+		</repository>
+		<repository>
+			<id>cukes</id>
+			<url>http://cukes.info/maven</url>
+		</repository>
+	</repositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>cukes</id>
-            <url>http://cukes.info/maven</url>
-        </pluginRepository>
-    </pluginRepositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>cukes</id>
+			<url>http://cukes.info/maven</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 
-    <build>
-  	<plugins>
-  		<plugin>
-  			<groupId>org.apache.maven.plugins</groupId>
-  			<artifactId>maven-compiler-plugin</artifactId>
-  			<version>2.3.2</version>
-  			<configuration>
-  				<source>1.6</source>
-  				<target>1.6</target>
-  			</configuration>
-  		</plugin>
-                <plugin>
-                        <groupId>cuke4duke</groupId>
-                        <artifactId>cuke4duke-maven-plugin</artifactId>
-                        <version>${cuke4duke.version}</version>
-                            <configuration>
-                                <jvmArgs>
-                                    <jvmArg>
-                                        -Dcuke4duke.objectFactory=cuke4duke.internal.jvmclass.PicoFactory
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.jos.sudoku.SudokuClient</mainClass>
+							<packageName>com.jos.sudoku</packageName>
+						</manifest>
+						<manifestEntries>
+							<mode>development</mode>
+							<url>${pom.url}</url>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>cuke4duke</groupId>
+				<artifactId>cuke4duke-maven-plugin</artifactId>
+				<version>${cuke4duke.version}</version>
+				<configuration>
+					<jvmArgs>
+						<jvmArg>
+							-Dcuke4duke.objectFactory=cuke4duke.internal.jvmclass.PicoFactory
                                     </jvmArg>
-                                </jvmArgs>
-                                <cucumberArgs>
-                                    <cucumberArg>${project.basedir}/target/test-classes</cucumberArg>
-                                </cucumberArgs>
-                                <gems>
-                                    <gem>install cuke4duke --version ${cuke4duke.version}</gem>
-                                    <!-- Behind a proxy? -->
-                                    <!--gem>install cuke4duke -/-version ${cuke4duke.version} -/-http-proxy ${http.proxy}</gem-->
-                                </gems>
-                            </configuration>
-                    <executions>
-                        <execution>
-                            <id>run-features</id>
-                            <phase>integration-test</phase>
-                            <goals>
-                                <goal>cucumber</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-  	</plugins>
-  </build>
+					</jvmArgs>
+					<cucumberArgs>
+						<cucumberArg>${project.basedir}/target/test-classes</cucumberArg>
+					</cucumberArgs>
+					<gems>
+						<gem>install cuke4duke --version ${cuke4duke.version}</gem>
+						<!-- Behind a proxy? -->
+						<!--
+							gem>install cuke4duke -/-version ${cuke4duke.version}
+							-/-http-proxy ${http.proxy}</gem
+						-->
+					</gems>
+				</configuration>
+				<executions>
+					<execution>
+						<id>run-features</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>cucumber</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 	<dependencies>
 		<dependency>
