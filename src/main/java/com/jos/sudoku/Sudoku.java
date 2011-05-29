@@ -4,11 +4,11 @@ public class Sudoku {
 	
 	private int sudokuGrid [][] = new int [9][9];
 	
-	public Sudoku(String sudokuAsText){
+	public Sudoku(String sudokuAsText) throws NumberFormatException{
 		this.sudokuGrid = initialiseGrid(sudokuAsText);
 	}
 
-	private int[][] initialiseGrid(String sudokuAsText) {
+	private int[][] initialiseGrid(String sudokuAsText) throws NumberFormatException{
 		int grid [][] = new int [9][9];
 		
 		//TODO change these awful names!

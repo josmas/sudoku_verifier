@@ -107,6 +107,8 @@ public class SudokuVerifier {
 			int counterMatches = countMatches(chain, chain.charAt(i)+"");
 			if (counterMatches > 1){
 				isCorrect = false;
+				System.out.println("The number " + chain.charAt(i) + " appears " 
+						+ counterMatches + " times in the chain: " + chain );
 				break;
 			}
 		}		
