@@ -57,7 +57,7 @@ public class SudokuVerifier {
 	//              i =2 ---> j = 3, j = 4, j = 5
 	// And the same for ranges when i and j are 3 and 6
 	private boolean checkSquares(int[][] sudokuGrid) {
-		boolean correctChain = false;//TODO change name
+		boolean correctChain = false;
 		for (int i = 0; i < sudokuGrid.length; i+=3){
 			StringBuilder chainSquare = createSquare(sudokuGrid, i, 0);
 			correctChain = isChainCorrect(chainSquare.toString());
@@ -122,7 +122,7 @@ public class SudokuVerifier {
 	 * @param subChain  the substring to count, may be null
 	 * @return the number of occurrences, 0 if <code>null</code> is passed in.
 	*/
-	private int countMatches(String chain, String subChain) { //TODO change names
+	private int countMatches(String chain, String subChain) {
 		if (isEmptyChain(chain) || isEmptyChain(subChain)) {
 			return 0;
 		}
