@@ -8,7 +8,8 @@ Usage is as per standard maven commands.
 'mvn test' will run all the test
 
 'mvn package' will create a jar file in the 'target' directory.
-That jar file can be used out of the box from console in 3 modes (plus a help flag):
+
+That jar file can be used from console in 3 modes (plus a help flag):
 
 	- No arguments mode: It will verify the 3 files provided in the 'solutionFiles' folder.
 	  Usage: java -jar target/SudokuVerifier-0.1.jar
@@ -22,26 +23,33 @@ That jar file can be used out of the box from console in 3 modes (plus a help fl
 	  - The option -h prints usage help text
 	  Usage: java -jar target/SudokuVerifier-0.1.jar -h 
 
+
+
 Potential Problems:
 	-- Please note that if you are running on default mode, the provided files should be in the correct path (hardcoded as 'solutionFiles/*.txt).
 	-- I haven't tested it extensively under Windows so some problems related to paths could come up (I have used file.separator in any case).
 	-- If you are behind a proxy, please modify the pom file accordingly (search for 'behind a proxy' for instructions in the file).
-	-- Please see the section 'Running the specs' if any problems arise from any cucumber related issues
+	-- Please see the section 'Running the specs' if any problems arise from cucumber related issues.
 
-I have used mockito as a mock framework in the sudoku verifier test class. The reason is that I wrote that class before doing any 
-file handling. The use of the readInput is not a 100% consistent with the final implementation (as noted in the test file) method
-but these were test used during functionality creation and could be good candidates to be deleted from the final test suite
+
+Other considerations:
+I have used mockito as a mock framework in the SudokuVerifierTest.java class. The reason is that I wrote that class before doing any 
+file handling. The use of the readInput() is not a 100% consistent with the final implementation (as noted in the test file)
+but these were test used during functionality creation and could be good candidates to be deleted from the final test suite.
 
 I have also used cuke4duke to be able to run cucumber features. I like letting my design grow organically from features although 
 under time pressure I don't always follow BDD/TDD.
+
 Cucumber features are stored in the 'features' folder.
-Step definitions are stored in the test folder, 'stepdefinitions' package.
+Step definitions for the features are stored in the test folder, 'stepdefinitions' package.
 
 -- Running the specs: 
-Cucumber features and cuke4duke execution is handled in the maven pom. To run features do:
-# Bootstrapping the system (only needed the first time, but it might take a while to download an install): 
+Cucumber features and cuke4duke execution is handled in the maven pom file. To run the features:
+
+# the following line is for Bootstrapping the system (only needed the first time, but it might take a while to download an install): 
 mvn -Dcucumber.installGems=true integration-test
-mvn integration-test   // For all tests to run (also needed to compile everything, at least the first time)
+
+mvn integration-test   // For all tests to run
 mvn cuke4duke:cucumber // To run just cucumber features
 
 
