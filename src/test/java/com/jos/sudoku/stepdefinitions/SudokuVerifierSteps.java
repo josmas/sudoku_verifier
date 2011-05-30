@@ -11,8 +11,12 @@ import static org.junit.Assert.*;
 import cuke4duke.annotation.I18n.EN.Given;
 import cuke4duke.annotation.I18n.EN.Then;
 import cuke4duke.annotation.I18n.EN.When;
-import cuke4duke.annotation.Pending;
 
+/**
+ * <p>Steps defined to run the cucumber features found in the 'features' directory</p>
+ * @author jos
+ *
+ */
 public class SudokuVerifierSteps {
 	
 	boolean isCorrect = false;

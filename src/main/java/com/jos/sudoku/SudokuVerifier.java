@@ -1,13 +1,20 @@
 package com.jos.sudoku;
 
 /**
- * Chain is a term to describe any type of Sudoku possible stream of chars that cannot be equal.....
+ * <p>A series of methods that validate the correctnes of a Sudoku grid
+ * Chain is a term to describe any type of Sudoku possible stream of ints such as Rows, Columns, and Squares.</p>
+ * <p>The solution of a Sudoku is validated by checking all the rows (x axis), all the colums (y axis)
+ *    and the 9 squares of the Grid.</p>
  * @author jos
  *
  */
 public class SudokuVerifier {
 
-	
+	/**
+	 * <p>The result will be the output of validating rows + columns + squares</p>
+	 * @param sudoku  The object encapsulating the Sudoku grid to verify
+	 * @return A boolean indicating the correctnes of the particular Sudoku passed in.
+	 */
 	public boolean verifySudoku(Sudoku sudoku) {
 		
 		int [][] sudokuGrid= sudoku.getSudokuGrid();
@@ -46,7 +53,7 @@ public class SudokuVerifier {
 		return correctChain;
 	}
 	
-	// We create the squares by going through the array in a different way here.
+	// We create and check the squares by going through the array in a different way here.
 	// An example of the first two squares:
 	// First Square i =0 ---> j = 0, j = 1, j = 2
 	//              i =1 ---> j = 0, j = 1, j = 2
@@ -74,11 +81,16 @@ public class SudokuVerifier {
 			if (!correctChain)
 				return false;
 		}
-		
-		
 		return correctChain;
 	}
 	
+	/**
+	 * <p>Helper method to create a Square from the passed indexes</p>
+	 * @param sudokuGrid  Grid that represents the Sudoku structure
+	 * @param startPointX  starting point in the X axis
+	 * @param startPointY  starting point in the Y axis
+	 * @return
+	 */
 	private StringBuilder createSquare(int[][] sudokuGrid, int startPointX, int startPointY){
 		StringBuilder chainSquare = new StringBuilder();
 		for (int i = startPointX; i < startPointX + 3; i++){
@@ -136,8 +148,7 @@ public class SudokuVerifier {
 	}
 
 	/**
-	 * <p>Verifies that a string is not <code>null</code> or empty returning <code>false</code> otherwise.</p> 
-	 * 
+	 * <p>Verifies that a string is not <code>null</code> or empty returning <code>false</code> otherwise.</p>
 	 * @param chain  the string to be verified
 	 * @return true or false depending on input
 	 */

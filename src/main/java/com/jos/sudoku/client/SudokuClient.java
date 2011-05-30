@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.jos.sudoku.client;
 
 import java.io.BufferedReader;
@@ -14,6 +11,15 @@ import com.jos.sudoku.SudokuVerifier;
 import com.jos.sudoku.data.SudokuDAO;
 import com.jos.sudoku.data.SudokuFileReader;
 
+/**
+ * <p>Main client for the Sudoku Verifier. It can be run in 3 modes plus an additional '-h' file for help.</p>
+ * <p>Modes are:</br>
+ * 		- No arguments: it will verify the 3 files provided in the project (make sure files are available)</br>
+ * 		- A file argument: it will verify that particular Sudoku solution file</br>
+ * 		- '-i' argument: will run the interactive mode and accept file names from console</p>
+ * @author jos
+ *
+ */
 public class SudokuClient {
 	
 	static final String QUIT = "quit";
@@ -21,7 +27,7 @@ public class SudokuClient {
 	private static BufferedWriter out;
 
 	/**
-	 * @param args
+	 * Main client for the Sudoku Verifier.
 	 */
 	public static void main(String[] args) {
 		
@@ -54,6 +60,10 @@ public class SudokuClient {
 		}	
 	}
 
+	/**
+	 * <p>Verifies the file passed as a argument according to the <code>SudokuVerifier.java</code> class</p>
+	 * @param sourceFile
+	 */
 	private static void verifyFile(String sourceFile) {
 		boolean isCorrect = false;
 		String sudokuAsText = "";
