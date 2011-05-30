@@ -37,7 +37,7 @@ public class SudokuFileReaderTest {
 
 		//TODO this test is too brittle : if the file does not exist we are in trouble
 		//It also touches the file system so should be separated to an integration suite.
-		String result = reader.readInput("solutionFiles/correct.txt");
+		String result = reader.readInput("solutionFiles" + System.getProperty("file.separator") + "correct.txt");
 		assertEquals(expected, result);
 	}
 	
