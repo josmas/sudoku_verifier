@@ -1,15 +1,16 @@
 /**
  * 
  */
-package com.jos.sudoku;
+package com.jos.sudoku.client;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 
+import com.jos.sudoku.Sudoku;
+import com.jos.sudoku.SudokuVerifier;
 import com.jos.sudoku.data.SudokuDAO;
 import com.jos.sudoku.data.SudokuFileReader;
 
