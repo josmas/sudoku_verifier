@@ -26,7 +26,7 @@ public class SudokuVerifierTest {
 	@Test
 	public void correctnessOfRows() throws IOException{
 
-		//Mocking readInput altough it will not return a chain but the whole Sudoku.
+		//Mocking readInput although it will not return a chain but the whole Sudoku.
 		//Handy for testing in isolation here.
 		when(file.readInput("correctRow")).thenReturn("248395716");
 		String correctRow = file.readInput("correctRow");
