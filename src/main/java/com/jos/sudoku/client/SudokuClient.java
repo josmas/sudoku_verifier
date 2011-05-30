@@ -17,7 +17,6 @@ import com.jos.sudoku.data.SudokuFileReader;
 public class SudokuClient {
 	
 	static final String QUIT = "quit";
-	//TODO don't like the statics
 	private static BufferedReader in;
 	private static BufferedWriter out;
 
@@ -27,7 +26,7 @@ public class SudokuClient {
 	public static void main(String[] args) {
 		
 		if (args.length == 0){
-			System.out.println("No arguments given; Verifying default files");
+			System.out.println("No arguments given; Verifying default files\n\n");
 			
 			String sourceFile = "solutionFiles" + System.getProperty("file.separator") + "correct.txt";
 			verifyFile(sourceFile);
@@ -40,20 +39,16 @@ public class SudokuClient {
 		}
 		else if (args.length >= 1){
 			if (args[0].equals("-i")){
-				//Run interactive
-				System.out.println("Going interactive!");
+				System.out.println("\nGoing interactive!\nType 'quit' to exit the verifier.\n");
 				try {
 					runInteractiveClient();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("There has been a problem reading/writing from/to the console. Exiting!");
 				}
 			}
 			else
 				verifyFile(args[0]);
-		}
-			
-			
+		}	
 	}
 
 	private static void verifyFile(String sourceFile) {
@@ -62,21 +57,26 @@ public class SudokuClient {
 		SudokuDAO data = new SudokuFileReader();
 		try {
 			sudokuAsText = data.readInput(sourceFile);
-			System.out.println("Verifying solution for file: " + sourceFile);
+			printHeader(sourceFile);
 			Sudoku sudoku = new Sudoku(sudokuAsText);
 			SudokuVerifier sv = new SudokuVerifier();
 			isCorrect = sv.verifySudoku(sudoku);
 			
-			if (isCorrect)
-				System.out.println("YAY! Your Sudoku is correct! Way to go!");
-			else
-				System.out.println("I'm afraid your Sudoku is incorrect. Please try again!");
-			
+			if (isCorrect){
+				System.out.println("YAY! Your Sudoku is correct! Way to go!\n\n");
+			} else {
+				System.out.println("I'm afraid your Sudoku is incorrect. Please try again!\n\n");
+			}
 		} catch (IOException ioe) {
-			System.out.println("There has been a problem reading your sudoku file " + ioe.getMessage());
+			System.out.println("There has been a problem reading your sudoku file: " + ioe.getMessage());
 		} catch (NumberFormatException nfe) {
-				System.out.println("There has been a problem parsing your sudoku file " + nfe.getMessage());
+				System.out.println("There has been a problem parsing your sudoku file: " + nfe.getMessage());
 		}
+	}
+
+	private static void printHeader(String sourceFile) {
+		System.out.println("Verifying solution for file: " + sourceFile);
+		System.out.println("---------------------------------------------------------------------");
 	}
 
 	private static void runInteractiveClient() throws IOException {
@@ -85,20 +85,15 @@ public class SudokuClient {
 		do {
 			write("Please enter a file name: ");
 			line = in.readLine();
+			writeln("");
+			writeln("----------------");
 			if (!line.equals(QUIT)){
 				verifyFile(line);
 				writeln("");
-				writeln("----------------");
-				writeln("");
 			} else {
-				writeln("");
-				writeln("----------------");
 				writeln("Thanks for using the Sudoku Verifier! BYEZ!!!");
 			}
-				
-			
-		}while (!line.equals(QUIT));
-		
+		} while (!line.equals(QUIT));
 	}
 	
 	private static void setupStreams(){
