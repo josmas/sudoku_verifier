@@ -37,7 +37,6 @@ public class SudokuTest {
 	
 	@Test
 	public void sudokuInvalidCreationNotEnoughInputInChain(){
-		//TODO repetition with previous test
 		String sudokuWithNotEnoughNumbers = "248 395 716\n571 628 349\n936 741 582\n" +
 		"863 417 295\n195 286 437\n427 953 861\n";
 		

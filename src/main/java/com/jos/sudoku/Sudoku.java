@@ -11,14 +11,12 @@ public class Sudoku {
 	private int[][] initialiseGrid(String sudokuAsText) throws NumberFormatException{
 		int grid [][] = new int [9][9];
 		
-		//TODO change these awful names!
-		String sudokuInARow = sudokuAsText.replaceAll("\n", "");
-		String sudokuInARow2 = sudokuInARow.replaceAll(" ", "");
-//		System.out.println("In a row: " + sudokuInARow2);
-		if (Sudoku.isValidChain(sudokuInARow2)){
+		String sudokuInTextWithNoLines = sudokuAsText.replace(System.getProperty("line.separator"), "");
+		String sudokuInTextWithNoSpaces = sudokuInTextWithNoLines.replaceAll(" ", "");
+		if (Sudoku.isValidChain(sudokuInTextWithNoSpaces)){
 			throw new NumberFormatException("Illegal characters in the sudoku string");
 		}
-		if (!isTheRightAmountOFNumbers(sudokuInARow2)){
+		if (!isTheRightAmountOFNumbers(sudokuInTextWithNoSpaces)){
 			throw new NumberFormatException("Not Enough characters in the sudoku string");
 		}
 		
@@ -26,11 +24,9 @@ public class Sudoku {
 		int counterForSudokuText = 0;
 		for (int row = 0; row < 9; row++) {
 		    for (int column = 0; column < 9; column++) {
-		    	grid[row] [column] = new Integer(sudokuInARow2.charAt(counterForSudokuText)+"").intValue();
+		    	grid[row] [column] = new Integer(sudokuInTextWithNoSpaces.charAt(counterForSudokuText)+"").intValue();
 		    	counterForSudokuText++;
-//		        System.out.print(grid[row] [column] + " ");
 		    }
-//		    System.out.println();
 		}
 		return grid;
 	}
