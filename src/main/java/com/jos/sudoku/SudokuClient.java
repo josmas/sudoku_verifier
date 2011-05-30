@@ -3,12 +3,22 @@
  */
 package com.jos.sudoku;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 
 import com.jos.sudoku.data.SudokuDAO;
 import com.jos.sudoku.data.SudokuFileReader;
 
 public class SudokuClient {
+	
+	static final String QUIT = "quit";
+	//TODO don't like the statics
+	private static BufferedReader in;
+	private static BufferedWriter out;
 
 	/**
 	 * @param args
@@ -18,17 +28,30 @@ public class SudokuClient {
 		if (args.length == 0){
 			System.out.println("No arguments given; Verifying default files");
 			
-			String sourceFile = "solutionFiles/correct.txt";
+			String sourceFile = "solutionFiles" + System.getProperty("file.separator") + "correct.txt";
 			verifyFile(sourceFile);
 			
-			sourceFile = "solutionFiles/incorrect.txt";
+			sourceFile = "solutionFiles" + System.getProperty("file.separator") + "incorrect.txt";
 			verifyFile(sourceFile);
 			
-			sourceFile = "solutionFiles/invalid_data.txt";
+			sourceFile = "solutionFiles" + System.getProperty("file.separator") + "invalid_data.txt";
 			verifyFile(sourceFile);
 		}
-		else if (args.length == 1)
-			verifyFile(args[0]);
+		else if (args.length >= 1){
+			if (args[0].equals("-i")){
+				//Run interactive
+				System.out.println("Going interactive!");
+				try {
+					runInteractiveClient();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else
+				verifyFile(args[0]);
+		}
+			
 			
 	}
 
@@ -55,4 +78,41 @@ public class SudokuClient {
 		}
 	}
 
+	private static void runInteractiveClient() throws IOException {
+		String line;
+		setupStreams();
+		do {
+			write("Please enter a file name: ");
+			line = in.readLine();
+			if (!line.equals(QUIT)){
+				verifyFile(line);
+				writeln("");
+				writeln("----------------");
+				writeln("");
+			} else {
+				writeln("");
+				writeln("----------------");
+				writeln("Thanks for using the Sudoku Verifier! BYEZ!!!");
+			}
+				
+			
+		}while (!line.equals(QUIT));
+		
+	}
+	
+	private static void setupStreams(){
+		in = new BufferedReader(new InputStreamReader(System.in));
+		out = new BufferedWriter(new OutputStreamWriter(System.out));		
+	}
+	
+	private static void write(String line) throws IOException{
+		out.write(line);
+		out.flush();
+	}
+	
+	private static void writeln(String line) throws IOException{
+		out.write(line);
+		out.newLine();
+		out.flush();
+	}
 }
