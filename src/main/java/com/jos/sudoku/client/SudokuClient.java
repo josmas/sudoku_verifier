@@ -46,6 +46,9 @@ public class SudokuClient {
 					System.out.println("There has been a problem reading/writing from/to the console. Exiting!");
 				}
 			}
+			else if (args[0].equals("-h")){
+				printUsage();
+			}
 			else
 				verifyFile(args[0]);
 		}	
@@ -74,6 +77,19 @@ public class SudokuClient {
 		}
 	}
 
+	private static void printUsage() {
+		String usage = "\nThis jar file can be used in 3 modes: \n\n" +
+			"- No arguments mode: It will verify the 3 files provided in the 'solutionFiles' folder.\n" +
+			"  Usage: java -jar target/SudokuVerifier-0.1.jar \n\n" +
+			"- file arguments mode: It will verify the 1 file provided in the command line.\n" +
+			"  Usage: java -jar target/SudokuVerifier-0.1.jar solutionFiles/correct.txt\n\n" +
+			"- Interactive mode: It will verify the files provided in the command line when started with argument '-i'.\n" +
+			"  Usage: java -jar target/SudokuVerifier-0.1.jar -i\n\n" +
+			"\nThe option -h prints this usage help";
+		
+		System.out.println(usage);
+	}
+	
 	private static void printHeader(String sourceFile) {
 		System.out.println("Verifying solution for file: " + sourceFile);
 		System.out.println("---------------------------------------------------------------------");
