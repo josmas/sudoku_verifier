@@ -13,7 +13,7 @@ public class SudokuFileReader implements SudokuDAO {
 
 	@Override
 	public String readInput(String input) throws IOException {
-		return readFile(input);
+		return readFileInPlain(input);
 	}
 
 	/**
@@ -33,10 +33,10 @@ public class SudokuFileReader implements SudokuDAO {
 	 *
 	 * <p>This method does not insure against bad input (it is verified in other parts of the application)</p>
 	 * @param input  the name of the file
-	 * @return a String with the lines read (keeping the structure)
+	 * @return a String with the lines read (NOT keeping the structure but as a long line of numbers)
 	 * @throws IOException in the case of problems with the file
 	 */
-	private String readFile(String input) throws IOException {
+	private String readFileInPlain(String input) throws IOException {
 		//this method does not insure against bad input
 		StringBuilder contents = new StringBuilder();
 
@@ -49,12 +49,11 @@ public class SudokuFileReader implements SudokuDAO {
 			while ((line = br.readLine()) != null) {
 				if (!line.isEmpty()) {
 					contents.append(line);
-					contents.append(System.getProperty("line.separator"));
 				}
 			}
 		} finally {
 			in.close();
 		}
-		return contents.toString();
+		return contents.toString().replace(" ", "");
 	}
 }

@@ -8,9 +8,9 @@ public class SudokuTest {
 	
 	@Test
 	public void sudokuCreationTest(){
-		String sudokuAsText = "248 395 716" + LN + "571 628 349" + LN + "936 741 582" + LN + "" +
-		"682 539 174" + LN + "359 174 628" + LN + "714 862 953" + LN + "" +
-		"863 417 295" + LN + "195 286 437" + LN + "427 953 861" + LN + "";
+		String sudokuAsText = "248395716571628349936741582" +
+		"682539174359174628714862953" +
+		"863417295195286437427953861";
 		
 		Sudoku sudoku = new Sudoku(sudokuAsText);
 		assertNotNull(sudoku);
@@ -23,9 +23,9 @@ public class SudokuTest {
 	
 	@Test
 	public void sudokuInvalidCreationTest(){
-		String sudokuAsText = "248 39o 716" + LN + "571 628 349" + LN + "936 741 582" + LN + "" +
-		"682 539 174" + LN + "359 174 628" + LN + "714 862 953" + LN + "" +
-		"863 417 295" + LN + "195 286 437" + LN + "427 953 861" + LN + "";
+		String sudokuAsText = "24839o716571628349936741582" +
+		"682539174359174628714862953" +
+		"863417295195286437427953861";
 		
 		try {
 			new Sudoku(sudokuAsText);
@@ -38,8 +38,8 @@ public class SudokuTest {
 	
 	@Test
 	public void sudokuInvalidCreationNotEnoughInputInChain(){
-		String sudokuWithNotEnoughNumbers = "248 395 716" + LN + "571 628 349" + LN + "936 741 582" + LN + "" +
-		"863 417 295" + LN + "195 286 437" + LN + "427 953 861" + LN + "";
+		String sudokuWithNotEnoughNumbers = "248 395 716571 628 349936 741 582" +
+		"863 417 295195 286 437427 953 861";
 		
 		try {
 			new Sudoku(sudokuWithNotEnoughNumbers);

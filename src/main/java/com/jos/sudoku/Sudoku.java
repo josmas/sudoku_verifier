@@ -24,12 +24,12 @@ public class Sudoku {
 	private int[][] initialiseGrid(String sudokuAsText) throws NumberFormatException{
 		int grid [][] = new int [9][9];
 		
-		String sudokuInTextWithNoLines = sudokuAsText.replace(System.getProperty("line.separator"), "");
-		String sudokuInTextWithNoSpaces = sudokuInTextWithNoLines.replaceAll(" ", "");
-		if (Sudoku.isValidChain(sudokuInTextWithNoSpaces)){
+//		String sudokuInTextWithNoLines = sudokuAsText.replace(System.getProperty("line.separator"), "");
+//		String sudokuInTextWithNoSpaces = sudokuInTextWithNoLines.replaceAll(" ", "");
+		if (Sudoku.isValidChain(sudokuAsText)){
 			throw new NumberFormatException("Illegal characters in the sudoku string");
 		}
-		if (!isTheRightAmountOFNumbers(sudokuInTextWithNoSpaces)){
+		if (!isTheRightAmountOFNumbers(sudokuAsText)){
 			throw new NumberFormatException("Not Enough characters in the sudoku string");
 		}
 		
@@ -37,7 +37,7 @@ public class Sudoku {
 		int counterForSudokuText = 0;
 		for (int row = 0; row < 9; row++) {
 		    for (int column = 0; column < 9; column++) {
-		    	grid[row] [column] = new Integer(sudokuInTextWithNoSpaces.charAt(counterForSudokuText)+"").intValue();
+		    	grid[row] [column] = new Integer(sudokuAsText.charAt(counterForSudokuText)+"").intValue();
 		    	counterForSudokuText++;
 		    }
 		}

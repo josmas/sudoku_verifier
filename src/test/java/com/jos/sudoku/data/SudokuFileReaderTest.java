@@ -34,8 +34,7 @@ public class SudokuFileReaderTest {
 		//TODO this test is too brittle : if the file does not exist we are in trouble
 		//It also touches the file system so should be separated to an integration suite.
 		String result = reader.readInput("solutionFiles" + System.getProperty("file.separator") + "correct.txt");
-		assertTrue(result.contains("248"));
-		assertTrue(result.contains("861"));
+		assertEquals("248395716571628349936741582682539174359174628714862953863417295195286437427953861", result);
 	}
 	
 	@Test
