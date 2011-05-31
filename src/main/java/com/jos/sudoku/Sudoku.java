@@ -24,7 +24,7 @@ public class Sudoku {
 	private int[][] initialiseGrid(String sudokuAsText) throws NumberFormatException{
 		int grid [][] = new int [9][9];
 		
-		if (Sudoku.isValidChain(sudokuAsText)){
+		if (!isValidChain(sudokuAsText)){
 			throw new NumberFormatException("Illegal characters in the sudoku string");
 		}
 		if (!isTheRightAmountOFNumbers(sudokuAsText)){
@@ -47,12 +47,12 @@ public class Sudoku {
 	}
 	
 	/**
-	 * <p>Validity through RegExp: all numbers from 1 to 9 appear in the chain, just once</p>
+	 * <p>Validity through RegExp: all numbers from 1 to 9 appear in the chain, and a total of 81</p>
 	 * @param row  the Sudoku chain to verify
 	 * @return A boolean indicating if the chain is valid
 	 */
-	static boolean isValidChain(String chain) {
-		return chain.matches("[1-9]{9}");
+	private boolean isValidChain(String chain) {
+		return chain.matches("[1-9]{81}");
 	}
 	
 	/**

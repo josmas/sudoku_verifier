@@ -109,7 +109,7 @@ public class SudokuVerifier {
 	 */
 	public boolean isChainCorrect(String chain) {
 
-		if (isEmptyChain(chain) || !Sudoku.isValidChain(chain))
+		if (isEmptyChain(chain) || !isValidChain(chain))
 			return false;
 		
 		boolean isCorrect = true;
@@ -125,6 +125,15 @@ public class SudokuVerifier {
 			}
 		}		
 		return isCorrect;
+	}
+	
+	/**
+	 * <p>Validity through RegExp: all numbers from 1 to 9 appear in the chain, just once</p>
+	 * @param row  the Sudoku chain to verify
+	 * @return A boolean indicating if the chain is valid
+	 */
+	private boolean isValidChain(String chain) {
+		return chain.matches("[1-9]{9}");
 	}
 	
 	/**

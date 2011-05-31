@@ -38,8 +38,8 @@ public class SudokuTest {
 	
 	@Test
 	public void sudokuInvalidCreationNotEnoughInputInChain(){
-		String sudokuWithNotEnoughNumbers = "248 395 716571 628 349936 741 582" +
-		"863 417 295195 286 437427 953 861";
+		String sudokuWithNotEnoughNumbers = "248395716571628349936741582" +
+		"863417295195286437427953861";
 		
 		try {
 			new Sudoku(sudokuWithNotEnoughNumbers);
@@ -49,5 +49,4 @@ public class SudokuTest {
 			//ignore
 		}
 	}
-
 }
