@@ -13,7 +13,7 @@ public class SudokuVerifier {
 	/**
 	 * <p>The result will be the output of validating rows + columns + squares</p>
 	 * @param sudoku  The object encapsulating the Sudoku grid to verify
-	 * @return A boolean indicating the correctnes of the particular Sudoku passed in.
+	 * @return A boolean indicating the correctness of the particular Sudoku passed in.
 	 */
 	public boolean verifySudoku(Sudoku sudoku) {
 		

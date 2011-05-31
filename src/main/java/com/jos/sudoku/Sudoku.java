@@ -24,8 +24,6 @@ public class Sudoku {
 	private int[][] initialiseGrid(String sudokuAsText) throws NumberFormatException{
 		int grid [][] = new int [9][9];
 		
-//		String sudokuInTextWithNoLines = sudokuAsText.replace(System.getProperty("line.separator"), "");
-//		String sudokuInTextWithNoSpaces = sudokuInTextWithNoLines.replaceAll(" ", "");
 		if (Sudoku.isValidChain(sudokuAsText)){
 			throw new NumberFormatException("Illegal characters in the sudoku string");
 		}
