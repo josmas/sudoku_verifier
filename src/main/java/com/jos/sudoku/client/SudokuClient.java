@@ -109,7 +109,7 @@ public class SudokuClient {
 		String line;
 		setupStreams();
 		do {
-			write("Please enter a file name: ");
+			write("Please enter a file name (quit): ");
 			line = in.readLine();
 			writeln("");
 			writeln("----------------");
