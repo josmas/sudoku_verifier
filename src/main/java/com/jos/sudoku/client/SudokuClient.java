@@ -31,32 +31,33 @@ public class SudokuClient {
 	 */
 	public static void main(String[] args) {
 		
+		SudokuClient sudokuClient = new SudokuClient();
 		if (args.length == 0){
 			System.out.println("No arguments given; Verifying default files\n\n");
 			
 			String sourceFile = "solutionFiles" + System.getProperty("file.separator") + "correct.txt";
-			verifyFile(sourceFile);
+			sudokuClient.verifyFile(sourceFile);
 			
 			sourceFile = "solutionFiles" + System.getProperty("file.separator") + "incorrect.txt";
-			verifyFile(sourceFile);
+			sudokuClient.verifyFile(sourceFile);
 			
 			sourceFile = "solutionFiles" + System.getProperty("file.separator") + "invalid_data.txt";
-			verifyFile(sourceFile);
+			sudokuClient.verifyFile(sourceFile);
 		}
 		else if (args.length >= 1){
 			if (args[0].equals("-i")){
 				System.out.println("\nGoing interactive!\nType 'quit' to exit the verifier.\n");
 				try {
-					runInteractiveClient();
+					sudokuClient.runInteractiveClient();
 				} catch (IOException e) {
 					System.out.println("There has been a problem reading/writing from/to the console. Exiting!");
 				}
 			}
 			else if (args[0].equals("-h")){
-				printUsage();
+				sudokuClient.printUsage();
 			}
 			else
-				verifyFile(args[0]);
+				sudokuClient.verifyFile(args[0]);
 		}	
 	}
 
@@ -64,7 +65,7 @@ public class SudokuClient {
 	 * <p>Verifies the file passed as a argument according to the <code>SudokuVerifier.java</code> class</p>
 	 * @param sourceFile
 	 */
-	private static void verifyFile(String sourceFile) {
+	private void verifyFile(String sourceFile) {
 		boolean isCorrect = false;
 		String sudokuAsText = "";
 		SudokuDAO data = new SudokuFileReader();
@@ -87,7 +88,7 @@ public class SudokuClient {
 		}
 	}
 
-	private static void printUsage() {
+	private void printUsage() {
 		String usage = "\nThis jar file can be used in 3 modes: \n\n" +
 			"- No arguments mode: It will verify the 3 files provided in the 'solutionFiles' folder.\n" +
 			"  Usage: java -jar target/SudokuVerifier-0.1.jar \n\n" +
@@ -100,12 +101,12 @@ public class SudokuClient {
 		System.out.println(usage);
 	}
 	
-	private static void printHeader(String sourceFile) {
+	private void printHeader(String sourceFile) {
 		System.out.println("Verifying solution for file: " + sourceFile);
 		System.out.println("---------------------------------------------------------------------");
 	}
 
-	private static void runInteractiveClient() throws IOException {
+	private void runInteractiveClient() throws IOException {
 		String line;
 		setupStreams();
 		do {
@@ -117,22 +118,22 @@ public class SudokuClient {
 				verifyFile(line);
 				writeln("");
 			} else {
-				writeln("Thanks for using the Sudoku Verifier! BYEZ!!!");
+				writeln("Thanks for using the Sudoku Verifier. BYEZ!!!");
 			}
 		} while (!line.equals(QUIT));
 	}
 	
-	private static void setupStreams(){
+	private void setupStreams(){
 		in = new BufferedReader(new InputStreamReader(System.in));
 		out = new BufferedWriter(new OutputStreamWriter(System.out));		
 	}
 	
-	private static void write(String line) throws IOException{
+	private void write(String line) throws IOException{
 		out.write(line);
 		out.flush();
 	}
 	
-	private static void writeln(String line) throws IOException{
+	private void writeln(String line) throws IOException{
 		out.write(line);
 		out.newLine();
 		out.flush();

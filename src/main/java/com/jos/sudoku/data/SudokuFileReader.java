@@ -52,6 +52,7 @@ public class SudokuFileReader implements SudokuDAO {
 				}
 			}
 		} finally {
+			br.close();
 			in.close();
 		}
 		return contents.toString().replace(" ", "");
